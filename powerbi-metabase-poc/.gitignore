@@ -1,0 +1,10 @@
+/target/
+!.mvn/wrapper/maven-wrapper.jar
+*.class
+*.jar
+*.war
+*.pbix
+*.pbit
+.idea/
+*.iml
+.DS_Store

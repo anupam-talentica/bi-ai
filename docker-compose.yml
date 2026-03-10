@@ -1,0 +1,51 @@
+# PostgreSQL for Metabase / POC use
+#
+# Run: docker compose up -d
+# Stop: docker compose down
+#
+# CLOUD METABASE: This Postgres runs on your machine. Cloud Metabase
+# (e.g. metabaseapp.com) cannot reach it. Use either:
+#   A) Free cloud Postgres (Neon, Supabase, etc.), or
+#   B) Expose this instance with a tunnel (ngrok, Tailscale).
+#
+# Both services in one stack: Metabase uses Postgres as its app DB and
+# you can add the same Postgres as a "database" in Metabase (host: postgres).
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: credila-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: metabase
+      POSTGRES_PASSWORD: metabase
+      POSTGRES_DB: metabase
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U metabase -d metabase"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  metabase:
+    image: metabase/metabase:latest
+    container_name: credila-metabase
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      MB_DB_TYPE: postgres
+      MB_DB_DBNAME: metabase
+      MB_DB_PORT: 5432
+      MB_DB_USER: metabase
+      MB_DB_PASS: metabase
+      MB_DB_HOST: postgres
+    ports:
+      - "3000:3000"
+
+volumes:
+  postgres_data:

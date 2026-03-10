@@ -1,0 +1,43 @@
+# PowerBI → Metabase POC - configure via environment variables or override here
+
+# LLM provider for DAX → SQL: claude | openai | gemini (default)
+llm:
+  provider: ${LLM_PROVIDER:gemini}
+
+claude:
+  api-key: ${CLAUDE_API_KEY:}
+  model: ${CLAUDE_MODEL:claude-3-5-sonnet-20241022}
+
+openai:
+  api-key: ${OPENAI_API_KEY:}
+  model: ${OPENAI_MODEL:gpt-4o-mini}
+
+gemini:
+  api-key: ${GEMINI_API_KEY:}
+  model: ${GEMINI_MODEL:gemini-2.0-flash}
+  base-url: https://generativelanguage.googleapis.com
+
+metabase:
+  base-url: ${METABASE_URL:http://localhost:3000}
+  username: ${METABASE_USER:metabase}
+  password: ${METABASE_PASSWORD:metabase}
+  database-id: ${METABASE_DB_ID:2}
+
+# POC behavior
+poc:
+  target-dialect: ${TARGET_DIALECT:postgres}
+  # Set to true to only extract + convert (no Metabase publish); useful without Metabase credentials
+  skip-metabase: ${POC_SKIP_METABASE:false}
+
+# Postgres (for --load-data: load USAFacts COVID data into same DB Metabase uses)
+spring:
+  datasource:
+    url: ${POSTGRES_URL:jdbc:postgresql://localhost:5432/metabase}
+    username: ${POSTGRES_USER:metabase}
+    password: ${POSTGRES_PASSWORD:metabase}
+    driver-class-name: org.postgresql.Driver
+
+# COVID data for --load-data. Set to local path or URL for deaths; optionally set cases-url for Confirmed Cases.
+covid:
+  data-url: ${COVID_DATA_URL:}
+  cases-url: ${COVID_CASES_DATA_URL:}
