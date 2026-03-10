@@ -34,7 +34,7 @@ The error occurred because:
 Run the application from terminal 6 (which has the environment variables set):
 
 ```bash
-cd /Users/anupamg/Desktop/Code/Credila/BI/powerbi-metabase-poc
+cd /Users/anupamg/Desktop/Code/BI/powerbi-metabase-poc
 java -jar target/powerbi-metabase-poc-0.0.1-SNAPSHOT.jar "../COVID-19 US Tracking Sample.pbit"
 ```
 

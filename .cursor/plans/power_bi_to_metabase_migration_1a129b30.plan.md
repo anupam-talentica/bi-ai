@@ -75,7 +75,7 @@ flowchart LR
 ### 1. Data pipeline (prerequisite)
 
 - Get COVID-19 data into a DB Metabase can use (e.g. Postgres).
-- Options: Replicate USAFacts ingestion (CSV/API) with a small ETL job, or use any DB where you can create tables that match the Power BI model (e.g. `COVID`, date dimension). Your [user-postgres MCP](file:///Users/anupamg/.cursor/projects/Users-anupamg-Desktop-Code-Credila-BI/mcps/user-postgres) can be used to inspect or create schema once you have a target DB.
+- Options: Replicate USAFacts ingestion (CSV/API) with a small ETL job, or use any DB where you can create tables that match the Power BI model (e.g. `COVID`, date dimension). Your [user-postgres MCP](file:///Users/anupamg/.cursor/projects/Users-anupamg-Desktop-Code-BI/mcps/user-postgres) can be used to inspect or create schema once you have a target DB.
 
 ### 2. Extract (Python preferred)
 

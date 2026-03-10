@@ -9,7 +9,7 @@ Use **one concrete data point** from the Power BI report to confirm the pipeline
 The sample data in Postgres is random. To validate, load the same source the report uses (USAFacts):
 
 ```bash
-cd /Users/anupamg/Desktop/Code/Credila/BI/scripts
+cd /Users/anupamg/Desktop/Code/BI/scripts
 chmod +x load_and_validate.sh load_usafacts_data.py
 ./load_and_validate.sh
 ```
@@ -32,7 +32,7 @@ If the script reports a different number, the USAFacts snapshot may differ sligh
 If the .pbix has a measure named **Total Deaths** (or similar):
 
 ```bash
-cd /Users/anupamg/Desktop/Code/Credila/BI/powerbi-metabase-poc
+cd /Users/anupamg/Desktop/Code/BI/powerbi-metabase-poc
 
 # List measures to see exact names
 java -jar target/powerbi-metabase-poc-0.0.1-SNAPSHOT.jar "../COVID-19 US Tracking Sample.pbit" --list-measures
